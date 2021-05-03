@@ -1,3 +1,99 @@
 <div class="container">
 
+  <div class="row mt-4 mb-4 ">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <div class="row">
+            <div class="col-md-2 col-sm-12">
+                <p class="fw-bold">Current Status</p>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+              <!-- <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Sri Lanka</label>
+              </div> -->
+            </div>
+
+            <div class="col-md-6 col-sm-6 text-end">
+              <small >Last Update : <span class="fw-bold">{{ maindata.update_date_time }}</span></small>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 col-sm-4 text-center">
+            <img src="assets/images/dashimg.png" width="300px" class="rounded mx-auto d-block" alt="...">
+          </div>
+
+          <div class="col-md-8" >
+            <div class="row">
+              <div class="col">
+                <div class="card cardstyle-default shadow p-3 mb-5 rounded" >
+                  <div class="card-body">
+                    <p class="text-center fa-3x"><i class="fas fa-viruses"></i></p>
+                    <p class="card-text text-center fw-bold"> New Cases</p>
+                    <h2 class="card-text text-center fw-bold">{{ maindata.local_new_cases }}</h2>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card cardstyle-default shadow p-3 mb-5 rounded" >
+                  <div class="card-body">
+                    <p class="text-center fa-3x"><i class="fas fa-disease"></i></p>
+                    <p class="card-text text-center fw-bold">Local Active Cases</p>
+                    <h2 class="card-text text-center fw-bold">{{maindata.local_active_cases}}</h2>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card cardstyle-default shadow p-3 mb-5 rounded" >
+                  <div class="card-body">
+                    <p class="text-center fa-3x"><i class="fas fa-head-side-cough"></i></p>
+                    <p class="card-text text-center fw-bold">Local Total Cases</p>
+                    <h2 class="card-text text-center fw-bold">{{maindata.local_total_cases}}</h2>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="col">
+                <div class="card cardstyle-default shadow p-3 mb-5 rounded" >
+                  <div class="card-body">
+                    <p class="text-center fa-3x"><i class="fas fa-house-user"></i></p>
+                    <p class="card-text text-center fw-bold">Local Recoverd</p>
+                    <h2 class="card-text text-center fw-bold">{{ maindata.local_recovered }}</h2>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card cardstyle-red shadow p-3 mb-5 rounded" >
+                  <div class="card-body">
+                    <p class="text-center fa-3x"><i class="fas fa-head-side-virus"></i></p>
+                    <p class="card-text text-center fw-bold">Local Deaths</p>
+                    <h2 class="card-text text-center fw-bold">{{maindata.local_deaths}}</h2>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card cardstyle-red shadow p-3 mb-5 rounded" >
+                  <div class="card-body">
+                    <p class="text-center fa-3x"><i class="fas fa-skull-crossbones"></i></p>
+                    <p class="card-text text-center fw-bold">Local New Deaths</p>
+                    <h2 class="card-text text-center fw-bold">{{maindata.local_new_deaths}}</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>

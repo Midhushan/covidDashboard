@@ -9,6 +9,13 @@ import { CommonService } from 'src/app/srvices/common.service';
 export class DashboardComponent implements OnInit {
   maindata: any;
   isDataNotfound : boolean = false;
+  isLocal: boolean = true;
+
+  lang: {
+    shinhala: false;
+    tamil: false;
+    english: true;
+  } | undefined
 
   constructor(private comserve: CommonService ) { }
 
@@ -18,12 +25,13 @@ export class DashboardComponent implements OnInit {
 
   getMainData(){
     this.comserve.getCovidData().subscribe(data => {
-        this.maindata = data;
+        this.maindata = data['data'];
         console.log(data)
     },error => {
         console.log(error)
         this.isDataNotfound = true;
     })
+
   }
 
 }
