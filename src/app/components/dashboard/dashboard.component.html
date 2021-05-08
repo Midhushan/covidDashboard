@@ -4,55 +4,94 @@
     <div class="card shadow-sm">
       <div class="card-body">
         <div class="row">
-            <div class="col-md-2 col-sm-12">
-                <p class="fw-bold">Current Status</p>
+          <div class="col-md-6 col-sm-12">
+            <p class="fw-bold">Current Status - <span class="fw-bold text-danger">Local</span></p>
+          </div>
+
+          <div class="col-md-6 col-sm-6 text-sm-end">
+
+            <div class="btn-group btn-group-sm" role="group" aria-label="Basic radio toggle button group">
+              <input type="radio" class="btn-check" [checked]="langid === 1" id="btnradio1"
+                (change)="onSelectionChange(1)" autocomplete="off">
+              <label class="btn btn-outline-primary" for="btnradio1">தமிழ்</label>
+
+              <input type="radio" class="btn-check" [checked]="langid === 2" (change)="onSelectionChange(2)"
+                name="btnradio" id="btnradio2" autocomplete="off">
+              <label class="btn btn-outline-primary" for="btnradio2">සිංහල</label>
+
+              <input type="radio" class="btn-check" [checked]="langid === 3" (change)="onSelectionChange(3)"
+                name="btnradio" id="btnradio3" autocomplete="off">
+              <label class="btn btn-outline-primary" for="btnradio3">English</label>
             </div>
 
-            <div class="col-md-4 col-sm-6">
-              <!-- <div class="form-check form-switch">
+            <!-- <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Sri Lanka</label>
               </div> -->
-            </div>
+          </div>
 
-            <div class="col-md-6 col-sm-6 text-end">
-              <small >Last Update : <span class="fw-bold">{{ maindata.update_date_time }}</span></small>
+
+        </div>
+
+        <div class="row alert alert-primary mt-2">
+          <div class="col-md-6 col-sm-6 text-sm-start ">
+            <small *ngIf="langid == 3">Data Source : HEALTH PROMOTION BUREAU</small>
+            <small *ngIf="langid == 1">தரவு மூலம் : சுகாதார மேம்பாட்டு பணியகம்</small>
+            <p *ngIf="langid == 2">දත්ත හරහා : සෞඛ්‍ය ප්‍රවර්ධන කාර්යාංශය</p>
+          </div>
+          <div class="col-md-6 col-sm-6 text-sm-end ">
+            <small>Last Update : <span class="fw-bold">{{ maindata?.update_date_time }}</span></small>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-4 col-sm-4 text-center">
-            <img src="assets/images/dashimg.png" width="300px" class="rounded mx-auto d-block" alt="...">
+          <div class="col-md-12">
+            <img src="assets/images/bannerone.png" width="300px" class="rounded mx-auto d-block" alt="...">
           </div>
 
-          <div class="col-md-8" >
+        </div>
+
+        <div class="row">
+          <!-- <div class="col-md-4 col-sm-4 text-center">
+            <img src="assets/images/dashimg.png" width="300px" class="rounded mx-auto d-block" alt="...">
+          </div> -->
+
+          <div class="col-md-12">
             <div class="row">
-              <div class="col">
-                <div class="card cardstyle-default shadow p-3 mb-5 rounded" >
+              <div class="col-md-4">
+                <div class="card cardstyle-default shadow-lg p-3 mb-5 rounded">
                   <div class="card-body">
-                    <p class="text-center fa-3x"><i class="fas fa-viruses"></i></p>
-                    <p class="card-text text-center fw-bold"> New Cases</p>
-                    <h2 class="card-text text-center fw-bold">{{ maindata.local_new_cases }}</h2>
+                    <p class="text-center fa-2x"><i class="fas fa-viruses"></i></p>
+                    <p *ngIf="langid == 3" class="text-center fw-bold"> New Cases</p>
+                    <p *ngIf="langid == 1" class="text-center fw-bold font-size-tamil">புதிய நோயாளிகள்</p>
+                    <p *ngIf="langid == 2" class="text-center fw-bold font-size-shinhala">නව රෝගීන් සංඛ්‍යාව</p>
+                    <h4 class="card-text text-danger text-center fw-bold">{{ maindata?.local_new_cases }}</h4>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="card cardstyle-default shadow p-3 mb-5 rounded">
+                  <div class="card-body">
+                    <p class="text-center fa-2x"><i class="fas fa-disease"></i></p>
+                    <p *ngIf="langid == 3" class="text-center fw-bold">Local Active Cases</p>
+                    <p *ngIf="langid == 2" class="text-center fw-bold font-size-shinhala">ප්‍රතිකාර ලබන රෝගීන් සංඛ්‍යාව</p>
+                    <p *ngIf="langid == 1" class=" text-center fw-bold font-size-tamil">தற்போது வைத்தியசாலைகளில்
+                      மருத்துவச்சோதனையிலுள்ள நபர்கள்</p>
+                    <h4 class=" text-center text-danger fw-bold">{{maindata?.local_active_cases}}</h4>
                   </div>
                 </div>
               </div>
 
               <div class="col">
-                <div class="card cardstyle-default shadow p-3 mb-5 rounded" >
+                <div class="card cardstyle-default shadow p-3 mb-5 rounded">
                   <div class="card-body">
-                    <p class="text-center fa-3x"><i class="fas fa-disease"></i></p>
-                    <p class="card-text text-center fw-bold">Local Active Cases</p>
-                    <h2 class="card-text text-center fw-bold">{{maindata.local_active_cases}}</h2>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col">
-                <div class="card cardstyle-default shadow p-3 mb-5 rounded" >
-                  <div class="card-body">
-                    <p class="text-center fa-3x"><i class="fas fa-head-side-cough"></i></p>
-                    <p class="card-text text-center fw-bold">Local Total Cases</p>
-                    <h2 class="card-text text-center fw-bold">{{maindata.local_total_cases}}</h2>
+                    <p class="text-center fa-2x"><i class="fas fa-head-side-cough"></i></p>
+                    <p *ngIf="langid == 3" class="text-center fw-bold">Local Total Cases</p>
+                    <p *ngIf="langid == 2" class="text-center fw-bold font-size-shinhala">තහවුරු කරනලද රෝගීන් සංඛ්‍යාව(සමුච්චිත)</p>
+                    <p *ngIf="langid == 1" class="text-center fw-bold font-size-tamil">உறுதிப்படுத்தப்பட்ட நோயாளிகளின்
+                      எண்ணிக்கை (ஒட்டுமொத்த)</p>
+                    <h4 class="card-text text-danger text-center fw-bold">{{maindata?.local_total_cases}}</h4>
                   </div>
                 </div>
               </div>
@@ -60,31 +99,37 @@
 
 
               <div class="col">
-                <div class="card cardstyle-default shadow p-3 mb-5 rounded" >
+                <div class="card cardstyle-default shadow p-3 mb-5 rounded">
                   <div class="card-body">
-                    <p class="text-center fa-3x"><i class="fas fa-house-user"></i></p>
-                    <p class="card-text text-center fw-bold">Local Recoverd</p>
-                    <h2 class="card-text text-center fw-bold">{{ maindata.local_recovered }}</h2>
+                    <p class="text-center fa-2x"><i class="fas fa-house-user"></i></p>
+                    <p *ngIf="langid == 3" class="text-center fw-bold">Local Recoverd</p>
+                    <p *ngIf="langid == 2" class="text-center fw-bold font-size-shinhala">සුවය ලබා පිටව ගිය සංඛ්‍යාව</p>
+                    <p *ngIf="langid == 1" class=" text-center fw-bold font-size-tamil">நோயிலிருந்து தேறியோர்</p>
+                    <h4 class="card-text text-danger text-center fw-bold">{{ maindata?.local_recovered }}</h4>
                   </div>
                 </div>
               </div>
 
               <div class="col">
-                <div class="card cardstyle-red shadow p-3 mb-5 rounded" >
+                <div class="card cardstyle-default shadow p-3 mb-5 rounded">
                   <div class="card-body">
-                    <p class="text-center fa-3x"><i class="fas fa-head-side-virus"></i></p>
-                    <p class="card-text text-center fw-bold">Local Deaths</p>
-                    <h2 class="card-text text-center fw-bold">{{maindata.local_deaths}}</h2>
+                    <p class="text-center fa-2x"><i class="fas fa-head-side-virus"></i></p>
+                    <p *ngIf="langid == 3" class="text-center fw-bold">Local Deaths</p>
+                    <p *ngIf="langid == 2" class="text-center fw-bold font-size-shinhala">මරණ සංඛ්‍යාව</p>
+                    <p *ngIf="langid == 1" class="text-center fw-bold font-size-tamil">இறப்புக்கள்</p>
+                    <h2 class="card-text text-danger text-center fw-bold">{{maindata?.local_deaths}}</h2>
                   </div>
                 </div>
               </div>
 
               <div class="col">
-                <div class="card cardstyle-red shadow p-3 mb-5 rounded" >
+                <div class="card cardstyle-default shadow p-3 mb-5 rounded">
                   <div class="card-body">
-                    <p class="text-center fa-3x"><i class="fas fa-skull-crossbones"></i></p>
-                    <p class="card-text text-center fw-bold">Local New Deaths</p>
-                    <h2 class="card-text text-center fw-bold">{{maindata.local_new_deaths}}</h2>
+                    <p class="text-center fa-2x"><i class="fas fa-skull-crossbones"></i></p>
+                    <p *ngIf="langid == 3" class="text-center fw-bold">Local New Deaths</p>
+                    <p *ngIf="langid == 2" class="text-center fw-bold font-size-shinhala">නව මරණ</p>
+                    <p *ngIf="langid == 1" class="text-center fw-bold font-size-tamil">புதிய இறப்புக்கள்</p>
+                    <h2 class="card-text text-danger text-center fw-bold">{{maindata?.local_new_deaths}}</h2>
                   </div>
                 </div>
               </div>
@@ -96,4 +141,22 @@
       </div>
     </div>
   </div>
-</div>
+
+  <!-- <div class="row">
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+      aria-controls="offcanvasRight">Toggle right offcanvas</button>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="container">
+
+        </div>
+      </div>
+    </div>
+
+
+  </div> -->

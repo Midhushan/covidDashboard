@@ -10,6 +10,7 @@ export class DashboardComponent implements OnInit {
   maindata: any;
   isDataNotfound : boolean = false;
   isLocal: boolean = true;
+  langid: number = 3;
 
   lang: {
     shinhala: false;
@@ -32,6 +33,11 @@ export class DashboardComponent implements OnInit {
         this.isDataNotfound = true;
     })
 
+  }
+
+  onSelectionChange(id:number): void{
+    this.langid = id;
+    console.log(this.langid)
   }
 
 }
