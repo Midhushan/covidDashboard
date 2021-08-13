@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CommonService } from 'src/app/srvices/common.service';
 
 @Component({
@@ -18,7 +19,15 @@ export class DashboardComponent implements OnInit {
     english: true;
   } | undefined
 
-  constructor(private comserve: CommonService ) { }
+  constructor(private comserve: CommonService,private route: ActivatedRoute ) {
+      const id = comserve.getId();
+      console.log(id)
+      this.route.params.subscribe( params => {
+        let id =  params;
+        console.log(id)
+     });
+
+   }
 
   ngOnInit(): void {
      this.getMainData();
@@ -27,17 +36,13 @@ export class DashboardComponent implements OnInit {
   getMainData(){
     this.comserve.getCovidData().subscribe(data => {
         this.maindata = data['data'];
-        console.log(data)
     },error => {
-        console.log(error)
         this.isDataNotfound = true;
     })
-
   }
 
   onSelectionChange(id:number): void{
     this.langid = id;
-    console.log(this.langid)
   }
 
 }
